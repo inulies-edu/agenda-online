@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round|Open+Sans">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Document</title>
+</head>
+<body class="bg-black">
+    <header>
+        <nav class="navbar navbar-expand-xl navbar-dark full-black">
+            <a class="navbar-brand bolder" href="#">{{ username }}</a>
+                <a href="/logout" class="btn btn-info to-right">Logout</a>
+        </nav>
+    </header>
+
+    <div>
+        <div class="container">
+            <div class="table-wrapper">
+                <div class="table-title">
+                    <div class="row">
+                        <div class="col-sm-3 text-white"><h2 class="bolder">Contatos</h2></div>
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-success add-new" data-toggle="modal" data-target="#newModal"><i class="fa fa-plus"></i>Novo</button>
+                        </div>
+                        <div class="col-sm-3">
+                          <button type="button" class="btn btn-warning add-new" data-toggle="modal" data-target="#editModal"><i class="fa fa-pencil"></i>Editar</button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button type="button" class="btn btn-danger add-new" data-toggle="modal" data-target="#deleteModal"><i class="fa fa-minus"></i>Excluir</button>
+                        </div>
+                        
+                    </div>
+                </div>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr class="text-white">
+                            <th class="col-sm-3">Nome</th>
+                            <th class="col-sm-5">E-mail</th>
+                            <th>Telefone</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in contacts %}
+                        <tr class="text-white">
+                            <td>{{i.name}}</td>
+                            <td>{{i.email}}</td>
+                            <td>{{i.phone}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div> 
+    </div>
+
+    <!-- Modal New -->
+<div class="modal fade" id="newModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title bolder" id="exampleModalLongTitle">Novo contato</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="raw">
+                <form id="contactForm" name="contact" role="form" action="createContact" method="post">
+                    <div class="modal-body">				
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" name="contact-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="contact-email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" name="contact-phone" id="phone" class="form-control" pattern="[0-9]{5}-[0-9]{4}" required>
+                        </div>					
+                    </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-info">Salvar contato</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal Delete -->
+
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title bolder" id="exampleModalCenterTitle">Excluir contato</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form id="deleteForm" name="deleteContact" role="form" action="deleteContact" method="post">
+            <select name="contact-name" class="form-select form-group" aria-label="Default select example">
+                <option selected>Selecionar Contato</option>
+                  {% for i in contacts %}
+                        <option value="{{i.name}}">{{i.name}}</option>
+                  {% endfor %}
+            </select>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-danger">Excluir contato</button>
+        </div>
+      </form>
+      </div>
+    </div>
+  </div>
+
+<!-- Modal Edit -->
+
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title bolder" id="exampleModalLongTitle">Editar contato</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="raw">
+                <form id="contactForm" name="contact" role="form" action="updateContact" method="post">
+                    <div class="modal-body">	
+                        <select name="contact-name-selected" class="form-select form-group" aria-label="Default select example">
+                            <option selected>Selecionar Contato</option>
+                            {% for i in contacts %}
+                              <option value="{{i.name}}">{{i.name}}</option>
+                            {% endfor %}
+                        </select>			
+                        <div class="form-group">
+                            <label for="name">Nome</label>
+                            <input type="text" name="contact-name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" name="contact-email" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" name="contact-phone" id="phone" class="form-control" pattern="[0-9]{5}-[0-9]{4}" required>
+                        </div>					
+                    </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-info">Salvar contato</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+[
+     {
+          "id": 1,
+          "username": "admin",
+          "email": "admin@admin.com.br",
+          "password": "pbkdf2:sha256:260000$OKjdkjJZKyGXLyr0$822017a1e90d5d3d227cf3327d12a57386348f4203bbff397c84a4f70b5f70d7",
+          "contacts": [
+               {
+                    "name": "test",
+                    "email": "test1@email.com",
+                    "phone": "91234-5678"
+               },
+               {
+                    "name": "test1",
+                    "email": "test1@email.com",
+                    "phone": "91234-8765"
+               }
+          ]
+     },
+     {
+          "id": 1,
+          "username": "inulies",
+          "email": "inulies@gmail.com",
+          "password": "pbkdf2:sha256:260000$aO0DUKnwdtfI0fTe$026626c8de25bc3cc5db639c23702029c65cd8f5f0a77a60dca23cb6b428b957",
+          "contacts": [
+               {
+                    "name": "test",
+                    "email": "123123@123123",
+                    "phone": "91234-5678"
+               }
+          ]
+     }
+]

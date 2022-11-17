@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/style.css">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Meu App</title>
+</head>
+<body class="bg-black">
+  <div class="login-reg-panel">
+		<div class="login-info-box">
+			<h2>Já tem uma conta?</h2>
+			<p>Faça Login</p>
+			<label id="label-register" for="log-reg-show">Login</label>
+			<input type="radio" name="active-log-panel" id="log-reg-show"  checked="checked">
+		</div>
+							
+		<div class="register-info-box">
+			<h2>Não tem uma conta?</h2>
+			<p>Faça já seu cadastro</p>
+			<label id="label-login" for="log-login-show">Register</label>
+			<input type="radio" name="active-log-panel" id="log-login-show">
+		</div>
+							
+		<div class="white-panel">
+			<div class="login-show">
+        {% set messages = get_flashed_messages() %}
+        {% if messages %}
+        <p class="text-danger">
+          {% for msg in messages %}
+            {{msg}}
+          {% endfor %}
+        {% endif %}
+        </p>
+        <form action="login" method="post">
+          <h2 class="text-white">LOGIN</h2>
+          <input type="text" placeholder="Login" name="login-user" required>
+          <input type="password" placeholder="Password" name="login-password" required>
+          <input type="submit" value="Login">
+          <a href="">Forgot password?</a>
+        </form>
+			</div>
+			<div class="register-show">
+        <form action="register" method="post">
+          <h2 class="text-white">REGISTER</h2>
+          <input type="text" placeholder="User" name="register-user" required>
+          <input type="text" placeholder="E-mail" name="register-email" required>
+          <input type="password" placeholder="Senha" name="register-password" required>
+          <input type="submit" value="Register">
+        </form>
+			</div>
+		</div>
+	</div>
+  <script src="../static/script.js"></script>
+</body>
+</html>
