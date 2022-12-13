@@ -14,6 +14,11 @@
                     "name": "test1",
                     "email": "test1@email.com",
                     "phone": "91234-8765"
+               },
+               {
+                    "name": "edit1",
+                    "email": "edit2@email.com",
+                    "phone": "91234-5678"
                }
           ]
      },
@@ -24,8 +29,8 @@
           "password": "pbkdf2:sha256:260000$aO0DUKnwdtfI0fTe$026626c8de25bc3cc5db639c23702029c65cd8f5f0a77a60dca23cb6b428b957",
           "contacts": [
                {
-                    "name": "test",
-                    "email": "123123@123123",
+                    "name": "Teste",
+                    "email": "",
                     "phone": "91234-5678"
                }
           ]

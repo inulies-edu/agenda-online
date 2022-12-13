@@ -30,7 +30,7 @@
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
-                        <div class="col-sm-3 text-white"><h2 class="bolder">Contatos</h2></div>
+                        <div class="col-sm-3 "><h2 class="bolder">Contatos</h2></div>
                         <div class="col-sm-3">
                             <button type="button" class="btn btn-success add-new" data-toggle="modal" data-target="#newModal"><i class="fa fa-plus"></i>Novo</button>
                         </div>
@@ -45,7 +45,7 @@
                 </div>
                 <table class="table table-bordered">
                     <thead>
-                        <tr class="text-white">
+                        <tr class="">
                             <th class="col-sm-3">Nome</th>
                             <th class="col-sm-5">E-mail</th>
                             <th>Telefone</th>
@@ -53,7 +53,7 @@
                     </thead>
                     <tbody>
                         {% for i in contacts %}
-                        <tr class="text-white">
+                        <tr class="">
                             <td>{{i.name}}</td>
                             <td>{{i.email}}</td>
                             <td>{{i.phone}}</td>
@@ -115,7 +115,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form id="deleteForm" name="deleteContact" role="form" action="deleteContact" method="post">
+          <form id="deleteForm" name="deleteContact" role="form" action="deleteContact" method="DELETE">
             <select name="contact-name" class="form-select form-group" aria-label="Default select example">
                 <option selected>Selecionar Contato</option>
                   {% for i in contacts %}
@@ -145,7 +145,7 @@
         </div>
         <div class="modal-body">
             <div class="raw">
-                <form id="contactForm" name="contact" role="form" action="updateContact" method="post">
+                <form id="contactForm" name="contact" role="form" action="updateContact" method="put">
                     <div class="modal-body">	
                         <select name="contact-name-selected" class="form-select form-group" aria-label="Default select example">
                             <option selected>Selecionar Contato</option>
